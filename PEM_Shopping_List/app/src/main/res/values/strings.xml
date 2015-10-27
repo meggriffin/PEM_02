@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Shopping list</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="dialog_cancel">Do you really want to cancel?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="dialog_addItem">Do you want to save this item?</string>
+
+</resources>
