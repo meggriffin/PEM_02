@@ -1,5 +1,6 @@
 package com.ks_pem02.pem_shopping_list;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -24,24 +25,19 @@ public class AddItemDialogFragment extends DialogFragment {
         // Use the Builder class for convenient dialog construction
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setMessage(R.string.dialog_addItem)
-                .setPositiveButton(R.string.no, new DialogInterface.OnClickListener() {
+                .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        dismiss();
+
+                        getTargetFragment().onActivityResult(getTargetRequestCode(), Activity.RESULT_OK, getActivity().getIntent());
+
                     }
                 })
-                .setNegativeButton(R.string.yes, new DialogInterface.OnClickListener() {
+                .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
+                        getTargetFragment().onActivityResult(getTargetRequestCode(), Activity.RESULT_CANCELED, getActivity().getIntent());
+                        dismiss();
 
 
-                        itemName = (EditText) getView().findViewById(R.id.itemName);
-                        itemPrice = (EditText) getView().findViewById(R.id.itemPrice);
-                        imageView = (ImageView) getView().findViewById(R.id.imageView);
-
-
-
-                        GroceriesFragment groceriesFrag = new GroceriesFragment();
-                        getFragmentManager().beginTransaction()
-                                .replace(R.id.fragment_container, groceriesFrag).commit();
                     }
                 });
         // Create the AlertDialog object and return it

@@ -73,6 +73,20 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     @Override
+    public void addItemToList(String _firstLine, String _secondLine, String _uri) {
+        System.out.println(_firstLine+" "+_secondLine+" "+_uri);
+
+        GroceriesFragment groceriesFrag = new GroceriesFragment();
+
+        groceriesFrag.addItem(_firstLine,_secondLine,_uri);
+
+        getFragmentManager().beginTransaction()
+                .addToBackStack(null)
+                .replace(R.id.fragment_container, groceriesFrag).commit();
+
+    }
+
+    @Override
     public void createNewItem() {
         AddItemFragment itemFrag = new AddItemFragment();
         getFragmentManager().beginTransaction()

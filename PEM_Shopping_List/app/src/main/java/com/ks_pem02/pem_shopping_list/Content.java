@@ -24,6 +24,9 @@ public class Content {
     public void addItem(Item item) {
         ITEMS.add(item);
     }
+    public void addItemFromStrings(String _firstLine, String _secondLine, String _uri){
+        addItem(new Item(_firstLine,_secondLine,_uri));
+    }
 
     public List<Item> getItems(){
         return ITEMS;

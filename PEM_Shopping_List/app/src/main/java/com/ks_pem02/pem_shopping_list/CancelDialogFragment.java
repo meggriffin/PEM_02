@@ -16,16 +16,17 @@ public class CancelDialogFragment extends DialogFragment {
         // Use the Builder class for convenient dialog construction
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setMessage(R.string.dialog_cancel)
-                .setPositiveButton(R.string.no, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dismiss();
-                    }
-                })
-                .setNegativeButton(R.string.yes, new DialogInterface.OnClickListener() {
+                .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         GroceriesFragment groceriesFrag = new GroceriesFragment();
                         getFragmentManager().beginTransaction()
                                 .replace(R.id.fragment_container, groceriesFrag).commit();
+                    }
+                })
+                .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dismiss();
+
                     }
                 });
         // Create the AlertDialog object and return it

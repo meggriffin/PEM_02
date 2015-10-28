@@ -28,7 +28,7 @@ import static com.ks_pem02.pem_shopping_list.dummy.DummyContent.*;
  */
 public class GroceriesFragment extends Fragment implements AbsListView.OnItemClickListener {
 
-    private Content content;
+    private Content content = new Content();
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -80,7 +80,6 @@ public class GroceriesFragment extends Fragment implements AbsListView.OnItemCli
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
-        content = new Content();
 
         // TODO: Change Adapter to display your content
         mAdapter = new GroceriesArrayAdapter<Content.Item>(getActivity(), R.layout.rowlayout, content.getItems());
@@ -149,6 +148,10 @@ public class GroceriesFragment extends Fragment implements AbsListView.OnItemCli
         if (emptyView instanceof TextView) {
             ((TextView) emptyView).setText(emptyText);
         }
+    }
+
+    public void addItem(String _firstLine, String _secondLine, String _uri){
+        content.addItemFromStrings(_firstLine,_secondLine,_uri);
     }
 
     /**

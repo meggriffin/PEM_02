@@ -3,6 +3,7 @@ package com.ks_pem02.pem_shopping_list;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -10,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import com.squareup.picasso.Picasso;
 
@@ -157,7 +159,36 @@ public class AddItemFragment extends Fragment {
     }
     public void addItem(){
         AddItemDialogFragment nuFragment = new AddItemDialogFragment();
+        nuFragment.setTargetFragment(this, 1);
         nuFragment.show(getActivity().getFragmentManager(), "save");
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data ){
+        switch (requestCode){
+            case 1:
+                if(resultCode == Activity.RESULT_OK){
+
+
+                    System.out.println("JAAA!!");
+
+                    EditText itemName = (EditText) getView().findViewById(R.id.itemName);
+                    EditText itemPrice = (EditText) getView().findViewById(R.id.itemPrice);
+                    ImageView imageView = (ImageView) getView().findViewById(R.id.imageView);
+
+                    mListener.addItemToList(itemName.getText().toString(),itemPrice.getText().toString(),"@drawable/avocado");
+
+
+
+                }else if(resultCode == Activity.RESULT_CANCELED){
+
+
+                    System.out.println("NEEEE!!");
+
+
+
+                }
+        }
     }
 
     /**
@@ -173,6 +204,9 @@ public class AddItemFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         public void onFragmentInteraction(Uri uri);
+
+        public void addItemToList(String _firstLine, String _secondLine, String _uri);
+
     }
 
 
